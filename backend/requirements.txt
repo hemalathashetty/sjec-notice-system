@@ -18,3 +18,4 @@ watchfiles
 pytesseract
 Pillow
 pymupdf
+psycopg2-binary
