@@ -1,6 +1,6 @@
 class Constants {
   // Your backend URL
-  static const String baseUrl = 'https://shy-ravens-search.loca.lt';
+  static const String baseUrl = 'https://sjec-notice-system-1.onrender.com';
   
   // API endpoints
   static const String loginUrl = '$baseUrl/auth/login';
