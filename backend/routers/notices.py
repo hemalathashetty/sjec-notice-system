@@ -14,7 +14,17 @@ import os
 import re
 from datetime import datetime
 
-pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+# ─── Tesseract Configuration ────────────────────────────────
+if os.name == 'nt':  # Windows
+    pytesseract.pytesseract.tesseract_cmd = r'C:\Program Files\Tesseract-OCR\tesseract.exe'
+else:  # Linux (Render)
+    # On Render/Linux, it's usually in the PATH, but we'll set it just in case
+    # or handle the missing binary gracefully
+    if os.path.exists('/usr/bin/tesseract'):
+        pytesseract.pytesseract.tesseract_cmd = '/usr/bin/tesseract'
+    else:
+        # If missing, extract_text_from_image will just return empty string instead of crashing
+        pass
 
 router = APIRouter(prefix="/notices", tags=["Notices"])
 

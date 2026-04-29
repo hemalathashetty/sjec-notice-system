@@ -15,3 +15,6 @@ aiohttp
 aiofiles
 jinja2
 watchfiles
+pytesseract
+Pillow
+pymupdf
