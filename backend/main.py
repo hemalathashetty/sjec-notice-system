@@ -7,6 +7,7 @@ from routers import superadmin
 from routers import notices
 from routers import chatbot
 from routers import analytics
+from seed_db import seed_users
 
 app = FastAPI(
     title="Smart Notice Management System",
@@ -26,6 +27,7 @@ app.add_middleware(
 from database import engine
 import models
 models.Base.metadata.create_all(bind=engine)
+seed_users()
 
 os.makedirs("uploads", exist_ok=True)
 app.mount("/uploads", StaticFiles(directory="uploads"), name="uploads")
