@@ -157,9 +157,11 @@ async def post_notice(
                     extracted_text = extract_text_from_pdf(file_bytes)
                 elif file_type and "image" in file_type:
                     extracted_text = extract_text_from_image(file_bytes)
-                else:
+                
+                if not extracted_text:
                     extracted_text = content or title
-            except:
+            except Exception as e:
+                print(f"OCR failed: {e}")
                 extracted_text = content or title
 
         if not extracted_text or len(extracted_text.strip()) < 10:
