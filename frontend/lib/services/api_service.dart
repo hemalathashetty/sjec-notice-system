@@ -164,8 +164,13 @@ class ApiService {
       );
       return {'success': true, 'data': response.data};
     } on DioException catch (e) {
-      final message = e.response?.data['detail'] ?? 'Failed to post notice';
+      final detail = e.response?.data?['detail'];
+      final message = detail != null 
+          ? detail.toString() 
+          : 'Failed: ${e.message} (${e.response?.statusCode})';
       return {'success': false, 'message': message};
+    } catch (e) {
+      return {'success': false, 'message': 'Client Error: $e'};
     }
   }
 
